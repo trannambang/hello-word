@@ -1,0 +1,21 @@
+CBI DDRB,0
+again: SBIC PINB,0
+RJMP over
+LDI R16,0x0
+STS 0x200,R16
+RJMP again
+over:
+LDI R16,0x1
+STS 0x200,R16
+RJMP again
+;Write instructions to get the status of PB2 and put it on PBO
+CBI DDRB,2
+SBI DDRB,0
+agian: SBIC PINB,2
+RJMP over
+CBI PORTB,0
+RJMP again
+over:
+SBI PORTB,0
+RJMP agian
+
